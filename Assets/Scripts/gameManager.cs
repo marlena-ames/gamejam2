@@ -36,7 +36,7 @@ public class gameManager : MonoBehaviour
                 {
                     checkerboardInitializer.g[i + co, j - 1].transform.Find("Outline").GetComponent<Image>().enabled = true;
                 }
-                else if (checkerboardInitializer.g[i + co, j - 1].transform.Find("Pieces").GetComponent<Image>().color != Pieces.color && !checkerboardInitializer.g[i + (co * 2), j - 2].transform.Find("C").GetComponent<Image>().enabled)
+                else if (checkerboardInitializer.g[i + co, j - 1].transform.Find("Pieces").GetComponent<Image>().color != Pieces.color && !checkerboardInitializer.g[i + (co * 2), j - 2].transform.Find("Pieces").GetComponent<Image>().enabled)
                 {
                     checkerboardInitializer.g[i + (co * 2), j - 2].transform.Find("Outline").GetComponent<Image>().enabled = true;
                     k2 = (i + co) + " " + (j - 1);
@@ -49,7 +49,7 @@ public class gameManager : MonoBehaviour
                 {
                     checkerboardInitializer.g[i + co, j + 1].transform.Find("Outline").GetComponent<Image>().enabled = true;
                 }
-                else if (checkerboardInitializer.g[i + co, j + 1].transform.Find("Pieces").GetComponent<Image>().color != Pieces.color && !checkerboardInitializer.g[i + (co * 2), j + 2].transform.Find("C").GetComponent<Image>().enabled)
+                else if (checkerboardInitializer.g[i + co, j + 1].transform.Find("Pieces").GetComponent<Image>().color != Pieces.color && !checkerboardInitializer.g[i + (co * 2), j + 2].transform.Find("Pieces").GetComponent<Image>().enabled)
                 {
                     checkerboardInitializer.g[i + (co * 2), j + 2].transform.Find("Outline").GetComponent<Image>().enabled = true;
                     k2 = (i + co) + " " + (j + 1);
