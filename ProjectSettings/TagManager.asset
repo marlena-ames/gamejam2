@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Sword
+  - Player2
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Fencer
   - Water
   - UI
   - Ground
