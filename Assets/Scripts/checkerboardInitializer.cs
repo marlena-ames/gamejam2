@@ -8,6 +8,10 @@ public class checkerboardInitializer : MonoBehaviour
 {
     public static int dim = 8;
     public GameObject checkerboard;
+    public Sprite lightTileSprite; // Sprite for light tiles
+    public Sprite darkTileSprite; // Sprite for dark tiles
+    public Sprite redPieceSprite; // Sprite for red pieces
+    public Sprite whitePieceSprite; // Sprite for white pieces
     public static GameObject[,] g = new GameObject[dim, dim];
     public static Vector2 Cmp;
 
