@@ -7,38 +7,48 @@ using UnityEngine.UI;
 public class checkerboardInitializer : MonoBehaviour
 {
     public static int dim = 8;
-    public GameObject checkerboard;
-    public Sprite lightTileSprite; // Sprite for light tiles
-    public Sprite darkTileSprite; // Sprite for dark tiles
-    public Sprite redPieceSprite; // Sprite for red pieces
-    public Sprite whitePieceSprite; // Sprite for white pieces
+    public GameObject checkboardPrefab;
     public static GameObject[,] g = new GameObject[dim, dim];
     public static Vector2 Cmp;
 
     private void Start()
     {
-        Vector2 cs = transform.gameObject.GetComponent<RectTransform>().sizeDelta, size = checkerboard.GetComponent<RectTransform>().sizeDelta;
-        cs.x /= 2;
-        cs.y /= 2;
-        float left = (cs.x - size.x) * -1, top = (cs.y - size.y);
-        Color[] colors = new Color[] { Color.white, Color.black };
-        Image drt = checkerboard.GetComponent<Image>(), Ci = checkerboard.transform.Find("Pieces").GetComponent<Image>();
+        // Get parent (Panel1) size and tile size
+        Vector2 parentSize = transform.Find("Panel1").GetComponent<RectTransform>().sizeDelta;
+        Vector2 tileSize = checkboardPrefab.GetComponent<RectTransform>().sizeDelta;
 
-        // Below is the loops for touching every panel on the board black and white one by one (nested loop)
+        // Calculate the total board size
+        Vector2 boardSize = new Vector2(dim * tileSize.x, dim * tileSize.y);
+
+        // Calculate offsets to center the board within Panel1
+        float startX = -(boardSize.x / 2) + (tileSize.x / 2);
+        float startY = (boardSize.y / 2) - (tileSize.y / 2);
+
+        Color[] colors = new Color[] { Color.white, Color.black };
+        Image drt = checkboardPrefab.GetComponent<Image>();
+        Image Ci = checkboardPrefab.transform.Find("Pieces").GetComponent<Image>();
+
+        // Loop to create the board tiles
         for (int i = 0; i < dim; i++)
         {
+            // Alternate row colors
             if (i % 2 == 0)
             {
-                { colors[0] = Color.black; colors[1] = Color.white; }
+                colors[0] = Color.black;
+                colors[1] = Color.white;
             }
             else
             {
-                { colors[0] = Color.white; colors[1] = Color.black; }
+                colors[0] = Color.white;
+                colors[1] = Color.black;
             }
 
-            for(int j = 0; j < dim; j++)
+            for (int j = 0; j < dim; j++)
             {
-                drt.color = colors[(((j % 2) == 0) ? 0 : 1)];
+                // Set the tile color
+                drt.color = colors[(j % 2 == 0) ? 0 : 1];
+
+                // Configure piece visibility and color
                 if (i == (dim / 2) - 1 || i == (dim / 2) || drt.color == Color.white)
                 {
                     Ci.enabled = false;
@@ -48,7 +58,6 @@ public class checkerboardInitializer : MonoBehaviour
                     Ci.enabled = true;
                 }
 
-                //Both of these conditions apply, if you want to edit piece colors change below
                 if (i < (dim / 2))
                 {
                     Ci.color = Color.red;
@@ -57,24 +66,27 @@ public class checkerboardInitializer : MonoBehaviour
                 {
                     Ci.color = Color.white;
                 }
-                
+
+                // Configure "k2" visibility
                 if (drt.color == Color.white)
                 {
-                    checkerboard.transform.Find("k2").GetComponent<Image>().enabled = false;
+                    checkboardPrefab.transform.Find("k2").GetComponent<Image>().enabled = false;
                 }
                 else
                 {
-                    checkerboard.transform.Find("k2").GetComponent<Image>().enabled = true;
+                    checkboardPrefab.transform.Find("k2").GetComponent<Image>().enabled = true;
                 }
 
-                g[i, j] = Instantiate(checkerboard);
+                // Instantiate and position the tile
+                g[i, j] = Instantiate(checkboardPrefab);
                 g[i, j].transform.SetParent(transform.Find("Panel1"));
-                g[i, j].transform.localPosition = new Vector3(left, top);
-                g[i, j].transform.name = i + "&" + j;
-                left += size.x;
+                g[i, j].transform.localPosition = new Vector3(
+                    startX + (j * tileSize.x), // X position
+                    startY - (i * tileSize.y), // Y position
+                    0 // Z position
+                );
+                g[i, j].transform.name = $"{i}&{j}";
             }
-            left = (cs.x - size.x) * -1;
-            top -= size.y;
         }
     }
     public static void OutlineSingleInstance()
