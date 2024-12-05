@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class Example : MonoBehaviour
 {
     private CharacterController controller;
@@ -13,10 +13,22 @@ public class Example : MonoBehaviour
 
     private void Start()
     {
-        controller = gameObject.AddComponent<CharacterController>();
+        controller = gameObject.GetComponent<CharacterController>();
     }
 
-    void Update()
+public void OnLeft() {
+
+}
+
+public void OnRight() {
+
+}
+
+public void OnJump() {
+
+}   
+
+ void Update()
     {
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
