@@ -464,7 +464,7 @@ MonoBehaviour:
   groundCheck: {fileID: 1885637851}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!4 &1885637851 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3080919650075900510, guid: 7a58ed75e7b09674dab1dc558d607b9c, type: 3}
