@@ -39,7 +39,7 @@ https://www.youtube.com/watch?v=K1xZ-rycYY8
 Maybe we'll finish it?
 
 # Created by: The Coolest Game Tech Group
-Anna Brooks - Art
+Anna Banks - Art
 Liam Szudy - Code
 Alec Albright - Code
 Marlena Ames - Writing, Code
