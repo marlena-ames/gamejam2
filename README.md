@@ -26,7 +26,7 @@ Features:
 
 -Decent code
 
-Art not created by Anna Brooks was sourced from the following
+Art not created by Anna Banks was sourced from the following
 https://wallpapers.com/wood-table-background
 https://x.com/duxio_bp/status/1100152437497839622
 
